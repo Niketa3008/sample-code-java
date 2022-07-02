@@ -1,4 +1,5 @@
 # Official maven/Java 8 image to create built artifact
+#This is for checking
 From maven:3.8-jdk-11 as builder
 
 # Copy the local code to container image
