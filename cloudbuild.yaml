@@ -11,5 +11,5 @@ steps:
   - run
   - --filename=new_deployment.yaml
   - --image=gcr.io/speedy-aurora-351809/kube
-  - --location=us-central1
+  - --location=us-central1c
   - --cluster=clusterniketa1
