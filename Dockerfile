@@ -1,4 +1,5 @@
 # Official maven/Java 8 image to create built artifact
+#This is for checking
 From maven:3.8-jdk-11 as builder
 
 # Copy the local code to container image
@@ -13,9 +14,9 @@ RUN mvn package -DskipTests
 From adoptopenjdk/openjdk11:alpine-jre
 
 #Copy jar to the production image from the builder image
-COPY --from=builder /app/target/sample-code*.jar /sample-code.jar
+COPY --from=builder /app/target/SampleCode-*.jar /SampleCode.jar
 
 # Run the webservice whenever container starts
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/sample-code.jar"]
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/SampleCode.jar"]
 
 
