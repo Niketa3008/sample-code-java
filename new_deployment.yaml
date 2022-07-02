@@ -1,5 +1,5 @@
-deployment.yaml:
----
+#deployment.yaml:
+#---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,8 +18,8 @@ spec:
         image: gcr.io
         ports:
           - containerPort: 8080
-service.yaml:
----
+#service.yaml:
+#---
 apiVersion: v1
 kind: Service
 metadata:
