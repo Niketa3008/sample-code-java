@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hello-world-app
-        image: gcr.io/speedy-aurora-351809/kube
+        image: gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA
         ports:
           - containerPort: 8080
 #service.yaml:
