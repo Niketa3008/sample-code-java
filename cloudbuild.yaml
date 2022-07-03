@@ -1,15 +1,15 @@
 steps:
   # build the container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/speedy-aurora-351809/kube", "."]
+  args: ["build", "-t", "gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA", "."]
   # push container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["push", "gcr.io/speedy-aurora-351809/kube"]
+  args: ["push", "gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA"]
   # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=new_deployment.yaml
-  - --image=gcr.io/speedy-aurora-351809/kube
+  - --image=gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA
   - --location=us-central1-c
   - --cluster=clusterniketa1
