@@ -17,6 +17,7 @@ spec:
       containers:
       - name: hello-world-app
         image: gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA
+        imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080
 #service.yaml:
