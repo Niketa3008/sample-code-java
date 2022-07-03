@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: hello-world-app
-        image: gcr.io/speedy-aurora-351809/github.com/niketa3008/sample-code-java@sha256:ab487bd6fec0ad15b0140015e00e86fc7e3f1885d9fb64a43d41775c491ad1d1
+        image: gcr.io/speedy-aurora-351809/kube@sha256:c186669efdd0745d28e81f892e02e849a8acfad086f12cf025a53858e1ca340d
         imagePullPolicy: IfNotPresent
         ports:
           - containerPort: 8080
