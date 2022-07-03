@@ -1,15 +1,27 @@
 steps:
-  # build the container image
-- name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA", "."]
-  # push container image
-- name: "gcr.io/cloud-builders/docker"
-  args: ["push", "gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA"]
-  # deploy container image to GKE
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=new_deployment.yaml
-  - --image=gcr.io/speedy-aurora-351809/kube:$COMMIT_SHA
-  - --location=us-central1-c
-  - --cluster=clusterniketa1
+steps:
+  # Build my-app image
+  - name: 'gcr.io/cloud_builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/version:$COMMIT_SHA'
+      - '.'
+
+  # Push my-app image to Google Cloud Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/version:$COMMIT_SHA'
+      
+   # gke deploy by useing gke-deploy
+  - name: 'gcr.io/cloud-builders/gke-deploy'
+    args:
+      - 'run'
+      - '--filename=./new_deployment.yaml'
+      - '--image'
+      - 'gcr.io/$PROJECT_ID/version:$COMMIT_SHA'
+      - '--location'
+      - 'us-central1-a'
+      - '--cluster'
+      - 'niketacluster1' 
