@@ -1,37 +1,40 @@
-#service.yaml:
-#---
-#de
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world-service
+  name: nginx-svc
 spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-  type: LoadBalancer
   selector:
-    app: hello-world-app
-    
-    #deployment.yaml:
-#---
+    app: frontend
+  ports:
+    - targetPort: 8080
+      port: 80
+  type: LoadBalancer
+
+--- 
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: firstkube
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: hello-world-app
-  template:
-    metadata:
-      labels:
-        app: hello-world-app
-    spec:
-      containers:
-      - name: hello-world-app
-        image: gcr.io/speedy-aurora-351809/kube@sha256:c186669efdd0745d28e81f892e02e849a8acfad086f12cf025a53858e1ca340d
-        imagePullPolicy: IfNotPresent
-        ports:
-          - containerPort: 8080
+metadata: 
+  labels: 
+    app: frontend
+   # color: green
+  name: green-deploy
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: frontend
+      # color: green
+  template: 
+    metadata: 
+      labels: 
+        app: frontend
+      #  color: green
+      name: green-deploy
+    spec: 
+      containers: 
+        - image: gcr.io/speedy-aurora-351809/kube@sha256:fc3c7c5af03caaf75f8e9d413c2587ca44fbde374013419e469d4fd8866a1b3d
+          imagePullPolicy: IfNotPresent
+          name: green-deploy
+          ports: 
+            - containerPort: 8080
