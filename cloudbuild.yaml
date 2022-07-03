@@ -24,4 +24,4 @@ steps:
       - '--location'
       - 'us-central1-a'
       - '--cluster'
-      - 'niketacluster1' 
+      - 'clusterniketa1' 
